@@ -1,3 +1,8 @@
+### The code was developed as part of the IARH project
+### The function searches a text given list of keywords and returns the list of keywords
+### Project IARH
+### Author Chiara Bonacchi
+
 #Set working directory
 
 setwd("~/Desktop/TwitterScrapes_Brexit/Brexit")
