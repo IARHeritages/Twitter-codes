@@ -60,6 +60,10 @@ write.csv(freqterms, file="freqterms300.csv")
 freqterms <- findFreqTerms(a.dtm, lowfreq = 450)
 write.csv(freqterms, file="freqterms450.csv")
 
+##Identify and remove additional stopwords
+myStopwords <- c(stopwords('english'),"originally", "posted")
+a <- tm_map(a, removeWords, myStopwords)
+  
 ##Find tokens associated to the most common words
 findAssocs2 <- findAssocs(a.dtm, c("brexit", "celtic", "dark", "barbarian", "barbar"), 0.10)
   
