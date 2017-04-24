@@ -78,7 +78,7 @@ a <- tm_map(a, removeWords, myStopwords)
 a <- tm_map(a, stemDocument, language="english")
 a.dtm <- TermDocumentMatrix(a, control=list(minWordLength=3))
   
-##Find tokens associated to the most common words
-findAssocs2 <- findAssocs(a.dtm, c("brexit", "back", "new", "vote", "now", "roman", "age", "dark", "empir", "britain", "scotland", "mediev", "celtic"), 0.10)
+##Find tokens associated to the most common words - those recurring at least 150 times.
+findAssocs2 <- findAssocs(a.dtm, c("brexit", "back", "new", "vote", "now", "roman", "age", "dark", "empir", "britain", "scotland", "mediev", "celtic", "barbarian", "trump", "take", "europ", "time", "barbar", "want", "middl", "celtic", "caesar"), 0.10)
   
 ###TO BE CONTINUED - ANALYSIS IN PRROGRESS
