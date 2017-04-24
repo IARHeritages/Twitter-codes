@@ -3,7 +3,7 @@
 ### Author Chiara Bonacchi
 
 ##Set working directory
-setwd("~/Desktop/Brexit tweets manipulated")
+setwd("add path")
 
 ##Install and require R package for Twitter data extraction and analysis, and TM package
 install.packages("twitteR")
@@ -12,7 +12,7 @@ install.packages("tm")
 require(tm)
 
 ##Import csv file containing the data that has been extracted (in this case containing the words 'Brexit' and other period-specific keywords)
-MyData <- read.csv(file="~/Desktop/Brexit tweets manipulated/TOTAL-Brexit.csv", header=TRUE, sep=",")
+MyData <- read.csv(file="add path/add file name.csv", header=TRUE, sep=",")
 
 ##Have a look at column names in the dataframe 'MyData' and 
 names(MyData)
@@ -60,9 +60,11 @@ write.csv(freqterms, file="freqterms300.csv")
 freqterms <- findFreqTerms(a.dtm, lowfreq = 450)
 write.csv(freqterms, file="freqterms450.csv")
 
-##Identify and remove additional stopwords
-myStopwords <- c(stopwords('english'),"originally", "posted")
+##Identify and remove additional stopwords, after looking at the outputs returned by the findFreqTerms function.
+myStopwords <- c(stopwords('english'),"yes", "yet")
 a <- tm_map(a, removeWords, myStopwords)
+a <- tm_map(a, stemDocument, language="english")
+a.dtm <- TermDocumentMatrix(a, control=list(minWordLength=3))
   
 ##Find tokens associated to the most common words
 findAssocs2 <- findAssocs(a.dtm, c("brexit", "celtic", "dark", "barbarian", "barbar"), 0.10)
