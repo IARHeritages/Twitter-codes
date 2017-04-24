@@ -3,7 +3,7 @@
 ### Author Chiara Bonacchi
 
 ##Set working directory
-setwd("add path")
+setwd("~/Desktop/Brexit-Twitter-Analysis")
 
 ##Install and require R package for Twitter data extraction and analysis, and TM package
 install.packages("twitteR")
@@ -12,7 +12,7 @@ install.packages("tm")
 require(tm)
 
 ##Import csv file containing the data that has been extracted (in this case containing the words 'Brexit' and other period-specific keywords)
-MyData <- read.csv(file="add path/add file name.csv", header=TRUE, sep=",")
+MyData <- read.csv(file="~/Desktop/Brexit-Twitter-Analysis/TOTAL-Brexit.csv", header=TRUE, sep=",")
 
 ##Have a look at column names in the dataframe 'MyData' and 
 names(MyData)
@@ -45,11 +45,22 @@ a.dtm <- TermDocumentMatrix(a, control=list(minWordLength=3))
 inspect(a.dtm[1:10, 1:10])
 
 ##Find common words (appearing at least 30/50/200/300/400 times in the corpus), and crearte csv files for exchange.
+setwd("~/Desktop/Brexit-Twitter-Analysis/Most-frequent-tokens")
+
 freqterms <- findFreqTerms(a.dtm, lowfreq = 30)
 write.csv(freqterms, file="freqterms30.csv")
 
 freqterms <- findFreqTerms(a.dtm, lowfreq = 50)
 write.csv(freqterms, file="freqterms50.csv")
+
+freqterms <- findFreqTerms(a.dtm, lowfreq = 100)
+write.csv(freqterms, file="freqterms100.csv")
+
+freqterms <- findFreqTerms(a.dtm, lowfreq = 150)
+write.csv(freqterms, file="freqterms150.csv")
+
+freqterms <- findFreqTerms(a.dtm, lowfreq = 175)
+write.csv(freqterms, file="freqterms175.csv")
 
 freqterms <- findFreqTerms(a.dtm, lowfreq = 200)
 write.csv(freqterms, file="freqterms200.csv")
@@ -61,7 +72,8 @@ freqterms <- findFreqTerms(a.dtm, lowfreq = 500)
 write.csv(freqterms, file="freqterms500.csv")
 
 ##Identify and remove additional stopwords, after looking at the outputs returned by the findFreqTerms function.
-myStopwords <- c(stopwords('english'),"yes", "yet")
+setwd("~/Desktop/Brexit-Twitter-Analysis")
+myStopwords <- c(stopwords('english'),"via", "like", "just", "cant", "that", "will", "much", "wont", "dont", "even", "yes", "right", "yet", "didnt", "tri")
 a <- tm_map(a, removeWords, myStopwords)
 a <- tm_map(a, stemDocument, language="english")
 a.dtm <- TermDocumentMatrix(a, control=list(minWordLength=3))
