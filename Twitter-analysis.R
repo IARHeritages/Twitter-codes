@@ -79,6 +79,6 @@ a <- tm_map(a, stemDocument, language="english")
 a.dtm <- TermDocumentMatrix(a, control=list(minWordLength=3))
   
 ##Find tokens associated to the most common words
-findAssocs2 <- findAssocs(a.dtm, c("brexit", "celtic", "dark", "barbarian", "barbar"), 0.10)
+findAssocs2 <- findAssocs(a.dtm, c("brexit", "back", "new", "vote", "now", "roman", "age", "dark", "empir", "britain", "scotland", "mediev", "celtic"), 0.10)
   
 ###TO BE CONTINUED - ANALYSIS IN PRROGRESS
