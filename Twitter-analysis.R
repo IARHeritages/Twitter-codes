@@ -49,7 +49,7 @@ freqterms <- findFreqTerms(a.dtm, lowfreq = 30)
 write.csv(freqterms, file="freqterms30.csv")
 
 freqterms <- findFreqTerms(a.dtm, lowfreq = 50)
-write.csv(freqterms, file="freqterms30.csv")
+write.csv(freqterms, file="freqterms50.csv")
 
 freqterms <- findFreqTerms(a.dtm, lowfreq = 200)
 write.csv(freqterms, file="freqterms200.csv")
@@ -57,8 +57,8 @@ write.csv(freqterms, file="freqterms200.csv")
 freqterms <- findFreqTerms(a.dtm, lowfreq = 300)
 write.csv(freqterms, file="freqterms300.csv")
 
-freqterms <- findFreqTerms(a.dtm, lowfreq = 450)
-write.csv(freqterms, file="freqterms450.csv")
+freqterms <- findFreqTerms(a.dtm, lowfreq = 500)
+write.csv(freqterms, file="freqterms500.csv")
 
 ##Identify and remove additional stopwords, after looking at the outputs returned by the findFreqTerms function.
 myStopwords <- c(stopwords('english'),"yes", "yet")
