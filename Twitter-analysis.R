@@ -62,3 +62,5 @@ write.csv(freqterms, file="freqterms450.csv")
 
 ##Find tokens associated to the most common words
 findAssocs2 <- findAssocs(a.dtm, c("brexit", "celtic", "dark", "barbarian", "barbar"), 0.10)
+  
+###TO BE CONTINUED - ANALYSIS IN PRROGRESS
