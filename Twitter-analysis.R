@@ -80,5 +80,12 @@ a.dtm <- TermDocumentMatrix(a, control=list(minWordLength=3))
   
 ##Find tokens associated to the most common words - those recurring at least 150 times.
 findAssocs2 <- findAssocs(a.dtm, c("brexit", "back", "new", "vote", "now", "roman", "age", "dark", "empir", "britain", "scotland", "mediev", "celtic", "barbarian", "trump", "take", "europ", "time", "barbar", "want", "middl", "celtic", "caesar"), 0.10)
+
+##Look-up URLs contained in tweets
+str_extract(tweets, "http[[:print:]]+") -> urls
+urls.list <- data.frame(URL=as.character(unlist(dimnames(sort(table(urls))))))
+write.csv(urls.list, "urls.list.csv")
+  
+  
   
 ###TO BE CONTINUED - ANALYSIS IN PRROGRESS
