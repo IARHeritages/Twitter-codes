@@ -13,7 +13,7 @@ setwd("~path")
 
 library("rtweet")
 
-# Load or create token:
+# Load or create token (for the project the twitter_token is located on the google drive/R useful files/twitter):
 
 load("twitter_token.R")
 
@@ -27,6 +27,9 @@ tweets <- c()
 
 #Loop through all the hashtags/keywords, extract the relevant tweets. Wait 15 minutes between each hashtag/keywords, because twitter API
 #has a limit on API calls within 15 minutes and usually it is used up in one search
+#It will need to be edited if any of the hashtags returns 18000 tweets, which will suggest that there are more 
+#(search_tweets returns maximum of 18000 tweets, which should be sufficient for our hashtag, otherwise we may need to use alternative 
+# method which is slower and sometimes return errors)
 
 i=1
 j=length(twitter_keywords)+1
