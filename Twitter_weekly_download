@@ -1,0 +1,42 @@
+### Workflow for weekly download of twitter data with specific hashtags (keywords)###
+
+### The code was developed as part of the IARH project, in order to download all the tweets containg specifc hashtag the appear every week.
+### The code downloads only the tweets published up to 7-10 ago from the time it is run - hence will be re-run every week 
+### Project IARH
+### Author Marta Krzyzanska
+
+#Set working direcotry:
+
+setwd("~path")
+
+# Require rtweet. If you have not installed it already, run install.packages() first.
+
+library("rtweet")
+
+# Load or create token:
+
+load("twitter_token.R")
+
+# Load or create list of hashtags to search for:
+
+load("twitter.R")
+
+#Create a list in which to store tweets with different hashtags
+
+tweets <- c()
+
+#Loop through all the hashtags/keywords, extract the relevant tweets. Wait 15 minutes between each hashtag/keywords, because twitter API
+#has a limit on API calls within 15 minutes and usually it is used up in one search
+
+i=1
+j=length(twitter_keywords)+1
+
+while (i<j){
+
+tweets[[i]]<-search_tweets(q=twitter_keywords[i], n = 18000, token=twitter_token)
+print (paste("Search for tweets containing keyword: ",twitter_keywords[i]," completed",sep=""))
+print ("Waiting for the token reset")
+Sys.sleep(900)
+i=i+1}
+
+save(tweets,file="tweets(#enter_download_date).R")
