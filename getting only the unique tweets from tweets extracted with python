@@ -1,0 +1,8 @@
+setwd("N:\\Tweeter\\output")
+tweets<-read.csv("output_Roman_Empire_Trump_.csv")
+
+uniqueTweets <- as.data.frame(table(tweets[[2]]))
+uniqueTweets <- uniqueTweets[with(uniqueTweets, order(-Freq)), ]
+length(uniqueTweets[[2]])
+write.csv(uniqueTweets[[1]],"Roman_Empire_Trump.csv")
+save(uniqueTweets,file="Roman_Empire_Trump.R")
