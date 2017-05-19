@@ -86,7 +86,32 @@ require(stringr)
 str_extract(tweets, "http[[:print:]]+") -> urls
 urls.list <- data.frame(URL=as.character(unlist(dimnames(sort(table(urls))))))
 write.csv(urls.list, "urls.list.csv")
-  
-  
+
+##Return full version of short URLs contained in tweets (from: https://www.r-bloggers.com/short-is-the-new-long-with-longurl-for-r-plus-working-with-weblogs-urls-in-r/)
+
+decode_short_url <- function(url, ...) {
+  # PACKAGES #
+  require(RCurl)
+ 
+  # LOCAL FUNCTIONS #
+  decode <- function(u) {
+    Sys.sleep(0.5)
+    x <- try( getURL(u, header = TRUE, nobody = TRUE, followlocation = FALSE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")) )
+    if(inherits(x, 'try-error') | length(grep(".*Location: (\\S+).*", x))<1) {
+      return(u)
+    } else {
+      return(gsub('.*Location: (\\S+).*', '\\1', x))
+    }
+  }
+ 
+  # MAIN #
+  gc()
+  # return decoded URLs
+  urls <- c(url, ...)
+  l <- vector(mode = "list", length = length(urls))
+  l <- lapply(urls, decode)
+  names(l) <- urls
+  return(l)
+
   
 ###TO BE CONTINUED - ANALYSIS IN PRROGRESS
