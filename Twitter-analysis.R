@@ -19,11 +19,11 @@ names(MyData)
 
 ##Check that all tweets are unique and have a look at the content
 tweets <- (MyData$Tweet)
-length(unique(MyData$Tweet))
-head(MyData)
+length(uniquetweets))
+head(tweets)
 
 ##Create corpus object made of mined tweets contained in 'MyData'
-a <- Corpus(VectorSource(MyData$Tweet))
+a <- Corpus(VectorSource(tweets))
 
 ##Remove odd characters from corpus
 a <- tm_map(a, function(x) iconv(x, to='UTF-8-MAC', sub='byte'))
@@ -37,7 +37,7 @@ a <- tm_map(a, removeWords, stopwords("english"))
 ##Require rJava and SnowballC for stemming and transform terms into tokens
 require(rJava)
 install.packages("SnowballC")
-require(Snawball)
+require(Snowball)
 a <- tm_map(a, stemDocument, language="english")
 
 ##Create a Document Term Matrix with terms longer than 3 letters and have a quick look
