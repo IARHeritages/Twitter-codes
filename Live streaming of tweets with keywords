@@ -1,0 +1,18 @@
+### Workflow for live streaming of tweets containg specific keywords ###
+### Project IARH
+### Author Marta Krzyzanska
+
+#Set working directory:
+setwd(~path)
+
+#Load required library
+library("rtweet")
+
+#Load or create token that will be used during streaming
+
+load("twitter_token.R") 
+
+#Stream tweets for keywords "Roman Empire and "romanempire"
+
+my_tweets<-stream_tweets(q = "Roman Empire", timeout = Inf, parse = FALSE, token = twitter_token, file_name = "streamTweetsRoman_Empire")
+my_tweets<-stream_tweets(q = "romanempire", timeout = Inf, parse = FALSE, token = twitter_token, file_name = "streamTweetsromanempire")
